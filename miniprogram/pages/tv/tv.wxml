@@ -1,0 +1,27 @@
+<view class="tvContainer">
+  <nav-bar title="电视剧" titleColor="#fff" titleSize="44" back="false" home="false"></nav-bar>
+    <view class="main">
+      <view wx:for="{{allTv}}" wx:key="unique" class="row">
+      <!-- 标题以及radio表单----------------------------- -->
+        <view class="title-wrapper" bindtap="showRadio"
+            data-index="{{index}}">
+          <view class="title">{{item.title}}></view>
+            <view wx:if="{{isRadio[index]}}"
+                    class="radio-wrapper" >
+              <radio-group bindchange="radioChange">
+                <label wx:for="{{radioItems}}" wx:key="{{item.value}}">
+                <radio value="{{item.value}}" color="#ffac2d" checked="{{item.check}}">{{item.name}}</radio>
+                </label>
+              </radio-group>
+            </view>
+          <view class="more" data-index="{{index}}" catchtap="viewMore">查看更多<view class="arrow"></view></view>
+        </view>
+      <!-- 标题以及radio表单----------------------------- -->
+              <!-- tv图片,评分,星星 -->
+              <scroll-view class="items" scroll-x="true">
+                  <tv-item class="item" wx:for="{{item.tvs}}" wx:key="unique" wx:for-item="tv" tv="{{ tv }}"
+                    ></tv-item>
+              </scroll-view>
+      </view>
+  </view>
+</view>

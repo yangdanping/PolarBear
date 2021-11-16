@@ -1,0 +1,12 @@
+<view class="listContainer">
+<nav-bar title="{{title}}" titleColor="#fff" titleSize="44"></nav-bar>
+<block wx:if="{{isLogin}}">
+  <view class="container">
+  <movie-item class="item" wx:for="{{movies}}" wx:key="unique" wx:for-item="movie" movie="{{ movie }}"
+                  ></movie-item>
+  <view wx:if="{{movies.length % 3 > 0}}" wx:key="unique" class="item hide" wx:for-item="movie"></view>
+  <view wx:if="{{movies.length % 3 == 1}}" wx:key="unique" class="item hide" wx:for-item="movie"></view>
+  </view>
+</block>
+<block wx:else><view class="msg">请登录查看更多信息</view></block>
+</view>

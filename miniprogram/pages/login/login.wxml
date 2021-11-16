@@ -1,0 +1,12 @@
+<view class="loginContainer">
+    <image class="index_img" src="{{imgUrl}}" alt="" />
+        <block wx:if="{{!isShow}}"><view class="btn" bindtap="getUserProfile">微信登录 </view></block>
+        <!-- 登陆成功则展示用户信息 -->
+        <block wx:else="{{!isShow}}">
+          <view class="myContainer">
+            <view class="bear"></view>
+              <view class="userName"><text>Hello! {{userInfo.nickName}}</text></view>
+              <!-- <view class="goStudy" bindtap="toFavor"><text>我的电影展览</text></view> -->
+          </view>
+        </block>
+</view>

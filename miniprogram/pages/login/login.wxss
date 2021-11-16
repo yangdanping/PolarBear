@@ -1,0 +1,78 @@
+/**index.wxss**/
+@import '../../style/animation.wxss'; 
+@import '../../style/baseimg.wxss'; 
+
+.loginContainer{
+  height: 100%;
+  background-image: var(--NavBarbg);
+}
+.loginContainer,
+.myContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 80%;
+  width: 480rpx;
+  height: 120rpx;
+  font-size: 44rpx;
+  line-height: 120rpx;
+  text-align: center;
+  border-radius: 15rpx;
+  background: rgba(0, 0, 0, .4);
+  color: #fff;
+  font-weight: 400;
+}
+
+.index_img {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 100rpx;
+  margin: 180rpx 0;
+}
+
+.btn,.index_img{
+  animation: fadein 2s forwards;
+}
+
+.userName{
+  font-size: 88rpx;
+  font-weight: bold;
+  margin: 10rpx 0;
+}
+
+.goStudy {
+  width: 340rpx;
+  height: 80prx;
+  border: 1px solid #eee;
+  font-size: 34rpx;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 15rpx;
+}
+
+.userName,
+.goStudy {
+  color: rgba(255, 255, 255, .9);
+  /* transition: all .3s; */
+  animation: moveDown 1s forwards;
+}
+
+
+.bear{
+  position: absolute;
+  width: 192px;
+  height: 100px;
+  /* width: 385rpx;
+  height: 200rpx; */
+  transform: translateX(-50%);
+  /* 我们元素可以添加多个动画 用逗号分隔 */
+  background: var(--baseimg);
+  animation: fadein 2s forwards,bear .5s steps(8) infinite,move 2s forwards;
+  z-index: 9999;
+}

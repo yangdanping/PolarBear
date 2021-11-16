@@ -1,0 +1,8 @@
+<view class="favorContainer">
+  <nav-bar title="电影展览" titleColor="#fff" titleSize="44"></nav-bar>
+  <view class="container">
+  <favor-item class="item" film="{{ film }}"></favor-item>
+  <!-- <view wx:if="{{film.length % 3 > 0}}" wx:key="unique" class="item hide" wx:for-item="film"></view>
+  <view wx:if="{{film.length % 3 == 1}}" wx:key="unique" class="item hide" wx:for-item="film"></view> -->
+  </view>
+</view>

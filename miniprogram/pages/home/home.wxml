@@ -1,0 +1,33 @@
+<view class="homeContainer" bind:play="play">
+    <view class="player player-{{isPlayingMusic ? 'play' : 'pause'}} {{ishind ? 'hind' : null}}" bindtap="play">
+        <image src="../../images/music_icon/music_icon.png" />
+        <image src="../../images/music_icon/music_play.png" />
+    </view>
+    <nav-bar title="北影熊" titleColor="#fff" titleSize="44" back="false" home="false"></nav-bar>
+    <custom-swiper imgUrls="{{swiperImg}}"></custom-swiper>
+<!-- 展示电影数据 -->
+        <view class="main">
+        <view class="myaddress">
+        <text bindtap="getMap" class="addressicon" wx:if="{{isAdress}}">您的位置:{{myAddress}} ></text>
+        <text wx:else>正在获取您的位置...</text></view>
+        <view wx:for="{{allMovies}}" wx:key="unique" class="row">
+            <view class="title-wrapper" bindtap="showRadio"
+            data-index="{{index}}">
+                <view class="title">{{item.title}}></view>
+            <view wx:if="{{isRadio[index]}}"
+             class="radio-wrapper" >
+            <radio-group bindchange="radioChange">
+            <label wx:for="{{radioItems}}" wx:key="{{item.value}}"><radio value="{{item.value}}" color="#ffac2d" checked="{{item.check}}">{{item.name}}</radio></label>
+            </radio-group>
+            </view>
+                <view class="more" data-index="{{index}}" catchtap="viewMore">查看更多<view class="arrow"></view></view>
+            </view>
+            <!-- 电影图片,评分,星星 -->
+            <scroll-view class="items" scroll-x="true">
+                <movie-item class="item" wx:for="{{item.movies}}" wx:key="unique" wx:for-item="movie" movie="{{ movie }}"
+                   ></movie-item>
+            </scroll-view>
+        </view>
+</view>
+    <my-tabbar></my-tabbar>
+</view>

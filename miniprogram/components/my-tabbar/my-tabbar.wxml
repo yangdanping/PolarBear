@@ -1,0 +1,7 @@
+<view class="tabbar">
+  <view wx:for="{{tabInfo}}" wx:key="unique" bindtap="tabChange" data-index="{{index}}">
+      <image wx:if="{{true}}" src="{{item.normalImg}}"></image>
+      <image wx:else src="{{item.activeImg}}"></image>
+      <view>{{item.title}}</view>
+  </view>
+</view>

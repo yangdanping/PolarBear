@@ -1,0 +1,41 @@
+<view class="mapContainer">
+  <nav-bar title="地图" titleColor="#fff" titleSize="44"></nav-bar>
+  <view class="container">
+  <view class="input">
+      <input type="text" placeholder-style="color:#fff;font-weight:200;"
+       placeholder="输入城市名获取天气" adjust-position="true" bindinput="inputing" bindconfirm="submit" value="{{inputValue}}" />
+  </view>
+   <view class="mapbox">
+    <map latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" scale="17"></map>
+   </view>
+    <view class="city">{{weaInfo.city}}</view>
+    <view class="tem">{{weaInfo.tem}}℃</view>
+    <view class="tem2">最高温{{weaInfo.tem1}}℃ , 最低温{{weaInfo.tem2}}℃</view>
+    <view class="tips">左滑查看天气详情</view>
+    <scroll-view class="items" scroll-x="true">
+        <view class="item-1"><view>空气指数</view><view>{{weaInfo.air}}</view></view>
+        <view class="item-2">
+          <view>空气质量</view>
+          <view class="{{(isGood ? 'good' : (isNormal ? 'normal': null))}}">{{weaInfo.air_level}}</view>
+        </view>
+        <view class="item-3"><view>PM2.5</view><view>{{weaInfo.air_pm25}}</view></view>
+        <view class="item-4"><view>能见度</view><view>{{weaInfo.visibility}}</view></view>
+        <view class="item-5"><view>湿度</view><view>{{weaInfo.humidity}}</view></view>
+        <view class="item-6"><view>风向</view><view>{{weaInfo.win}}</view></view>
+        <view class="item-7"><view>风力等级</view><view>{{weaInfo.win_speed}}</view></view>
+        <view class="item-8"><view>风速</view><view>{{weaInfo.win_meter}}</view></view>
+        <view class="item-9"><view>气压</view><view>{{weaInfo.pressure}}</view></view>
+    </scroll-view>
+    <view class="weaDetail">
+      <view>北影熊小提示:</view>
+      <view class="airtips">{{weaInfo.air_tips}}</view>
+      <view class="kouzhao">{{weaInfo.aqi.kouzhao}}</view>
+      <view class="waichu">{{weaInfo.aqi.waichu}}</view>
+      <view class="yundong">{{weaInfo.aqi.yundong}}</view>
+      <view class="kaichuang">{{weaInfo.aqi.kaichuang}}</view>
+    </view>
+    <view class="btn" bindtap="markertap">查看我的具体位置</view>
+    <view class="btn" bindtap="updateData">更新天气数据</view>
+    <view class="updateTime">更新时间:{{weaInfo.date}}-{{weaInfo.update_time}}</view>
+  </view>
+</view>

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "nav-bar": "../../components/nav-bar/nav-bar",
+    "favor-item": "../../components/favor-item/favor-item"
+  }
+}

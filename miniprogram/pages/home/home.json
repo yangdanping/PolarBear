@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "nav-bar": "../../components/nav-bar/nav-bar",
+    "custom-swiper": "../../components/custom-swiper/custom-swiper",
+    "movie-item":"../../components/movie-item/movie-item"
+  },
+  "navigationBarTitleText": "北音熊音乐"
+}

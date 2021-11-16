@@ -1,0 +1,10 @@
+<view class="container">
+  <view style="{{statusBarStyle}}"></view>
+  <view class="nav-bar" style="{{navBarStyle}}">
+    {{title}}
+    <view class="icons">
+      <image bindtap="back" wx:if="{{back === 'true'}}" class="back" src="../../images/nav_back.png"></image>
+      <image bindtap="home" wx:if="{{home === 'true'}}"class="home" src="../../images/nav_home.png"></image>
+    </view>
+  </view>
+</view>

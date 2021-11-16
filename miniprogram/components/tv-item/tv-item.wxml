@@ -1,0 +1,15 @@
+<view class="item" bindtap="detail">
+  <image class="photo" src="{{tv.cover}}"></image>
+  <view class="title">{{tv.title}}</view>
+    <view class="score">
+      <block wx:if="{{tv.stars}}">
+        <view class="stars">
+          <image wx:for="{{tv.stars.on}}" wx:key="unique"  class="star" src="../../images/rating_star_small_on.png" />
+          <image wx:for="{{tv.stars.half}}" wx:key="unique" class="star" src="../../images/rating_star_small_half.png" />
+          <image wx:for="{{tv.stars.off}}" wx:key="unique" class="star" src="../../images/rating_star_small_off.png" />
+        </view>
+          {{tv.rate}}
+          </block>
+          <block wx:else>暂无评分</block>
+    </view>
+  </view>

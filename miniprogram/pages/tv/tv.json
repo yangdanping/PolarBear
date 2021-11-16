@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "榜单",
+  "usingComponents": {    
+    "nav-bar": "../../components/nav-bar/nav-bar",
+    "tv-item":"../../components/tv-item/tv-item"
+  }
+}

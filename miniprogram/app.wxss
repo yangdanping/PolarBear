@@ -1,0 +1,8 @@
+/**app.wxss**/
+page {
+  height: 100%;/* 每个页面都需要page高度为100%,所以在公共样式添加height: 100% */
+  --NavBarbg: linear-gradient(180deg, rgb(143, 255, 177), rgb(56, 92, 255));
+  --HomeNavBarbg: linear-gradient(180deg, rgb(86, 1, 126),rgb(0, 0, 26));
+  --MapNavBarbg: linear-gradient(180deg, rgb(129, 221, 156),rgb(85, 45, 230));
+  --DetailNavBarbg: linear-gradient(180deg, rgb(0, 0, 26),rgb(86, 1, 126));
+}
