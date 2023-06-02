@@ -1,0 +1,115 @@
+@import '../../style/animation.wxss'; 
+@import '../../style/music.wxss'; 
+
+.msg{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 88rpx;
+  font-weight: bold;
+  margin: 10rpx 0;
+  color: rgba(255, 255, 255, .9);
+  /* transition: all .3s; */
+  animation: moveDown 1s forwards;
+}
+
+.homeContainer{
+  height: 2900rpx;
+  background-image: var(--HomeNavBarbg);
+}
+
+.myplayer {
+  position: fixed;
+  top: 47rpx;
+  left: 15rpx;
+}
+
+@media screen and (min-height:800px){
+  .hometitle{
+    height: 81px;
+    line-height: 130px;
+  }
+}
+
+.myaddress{
+  color: rgb(212, 212, 212);
+  margin: 0 0 30rpx 30rpx;
+  font-size: 24rpx;
+  text-align: center;
+
+}
+.title-wrapper{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.title-wrapper .title{
+  color: rgb(212, 212, 212);
+  font-weight: 700;
+  font-size: 32rpx;
+}
+
+.title-wrapper .more{
+  color: #ff6262;
+  display: flex; 
+  font-size: 24rpx;
+  align-items: center;
+}
+
+.title-wrapper .more .arrow{
+  width: 10rpx;
+  height: 10rpx;
+  border: 2rpx solid #ff6262;
+  border-left: none;
+  border-top: none;
+  transform: rotate(-45deg);
+  margin-left: 8rpx;
+}
+
+.title-wrapper .radio-wrapper{
+  position: absolute;
+  left: 180rpx;
+  color: #ff6262;
+  border-radius: 15rpx;
+  background-color: rgba(0, 0, 0,.3);
+  animation: fadein 1s forwards,move .5s forwards;
+}
+
+.radio-wrapper radio-group{
+transform: scale(0.7);
+}
+
+.radio-wrapper radio-group label:nth-child(2),
+.radio-wrapper radio-group label:nth-child(3){
+margin-left: 24rpx;
+}
+
+
+
+/* 影片信息---------------------------------------- */
+.row{
+  margin-bottom: 30rpx;
+}
+.row:last-child{
+  margin-bottom: 100rpx;
+}
+
+.items{
+  color: #fff;
+  white-space: nowrap;
+}
+
+.item{
+  margin-left: 30rpx;
+}
+.items .item:last-child{
+  margin-right: 30rpx;
+}
+
+
+
+
