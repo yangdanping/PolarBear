@@ -8,14 +8,14 @@
   <!-- 展示电影数据 -->
   <view class="main">
     <view class="myaddress">
-      <text bindtap="getMap" class="addressicon" wx:if="{{isAdress}}">您的位置:{{myAddress}} ></text>
+      <text bindtap="getMap" class="addressicon" wx:if="{{myAddress}}">您的位置:{{myAddress}} ></text>
       <text wx:else>正在获取您的位置...</text>
     </view>
     <view wx:for="{{homeMovies}}" wx:key="unique" class="row">
-      <view class="title-wrapper" bindtap="showRadio" data-index="{{index}}">
+      <view class="title-wrapper" bindtap="showRadio" data-index="{{index}}" id="{{index}}">
         <view class="title">{{item.title}}></view>
         <view wx:if="{{isRadio[index]}}" class="radio-wrapper">
-          <radio-group bindchange="radioChange">
+          <radio-group bindchange="radioChange" data-index="{{index}}">
             <label wx:for="{{radioItems}}" wx:key="{{item.value}}">
               <radio value="{{item.value}}" color="#ffac2d" checked="{{item.check}}">{{item.name}}</radio>
             </label>

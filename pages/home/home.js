@@ -1,7 +1,8 @@
 import { getMovieData, getUserLocation } from '../../service/home.request';
-import updataMoive from '../../utils/updataMoive';
+import updataItemStars from '../../utils/updataItemStars';
 import useToast from '../../utils/useToast';
 import { homeMovies } from '../../constants/homeMovies';
+import { radioItems } from '../../constants/radioItems';
 Page({
   //页面的初始数据
   data: {
@@ -11,29 +12,11 @@ Page({
     swiperImg: ['/assets/images/swiper_img/1.jpg', '/assets/images/swiper_img/2.jpg', '/assets/images/swiper_img/3.jpg', '/assets/images/swiper_img/4.jpg'],
     homeMovies,
     myAddress: '',
-    isAdress: false,
     audioCtx: null,
     isPlayingMusic: false,
     ishind: false,
-    radioItems: [
-      {
-        value: 'recommend',
-        name: '热门',
-        check: true
-      },
-      {
-        value: 'time',
-        name: '最新',
-        check: null
-      },
-      {
-        value: 'rank',
-        name: '评价',
-        check: null
-      }
-    ],
-    isRadio: [],
-    chooseIndex: 0
+    radioItems,
+    isRadio: []
   },
   onLoad() {
     //生命周期函数--监听页面加载
@@ -43,7 +26,7 @@ Page({
   },
   async loadData(index) {
     useToast('正在获取影片信息...');
-    let updateItem = `homeMovies[${index}].movies`;
+    const updateItem = `homeMovies[${index}].movies`;
     const { title, tag } = this.data.homeMovies[index];
     const localMovies = wx.getStorageSync(title);
     if (localMovies) {
@@ -53,14 +36,14 @@ Page({
       console.log('本地数据被清空,重新获取-----------------');
       const res = await getMovieData({ tag, page_limit: 35 });
       let homeMovies = res.subjects;
-      homeMovies.forEach((item) => updataMoive(item));
+      homeMovies.forEach((item) => updataItemStars(item));
       wx.setStorageSync(title, homeMovies);
       this.setData({ [updateItem]: homeMovies ?? [] });
     }
   },
   async loadCity() {
-    const { latitude, longitude, myAddress, isAdress } = await getUserLocation();
-    this.setData({ latitude, longitude, myAddress, isAdress });
+    const { latitude, longitude, myAddress } = await getUserLocation();
+    this.setData({ latitude, longitude, myAddress });
   },
   viewMore(e) {
     const index = e.currentTarget.dataset.index;
@@ -82,7 +65,7 @@ Page({
       console.log('play');
       this.data.audioCtx || this.setData({ audioCtx: wx.createInnerAudioContext() });
       let audioCtx = this.data.audioCtx;
-      audioCtx.src = 'https://cxywyq.top:3000/static/music/ydp/001.mp3';
+      audioCtx.src = 'http://119.91.150.141:3333/static/music/001.mp3';
       audioCtx.onPlay(() => {
         console.log('start play');
       });
@@ -114,45 +97,27 @@ Page({
     }
   },
   showRadio(e) {
-    console.log(e);
     const index = e.currentTarget.dataset.index;
-    this.setData({ chooseIndex: index });
-    if (this.data.isRadio.length === 0) {
-      for (var i = 0; i < this.data.homeMovies.length; i++) {
-        this.data.isRadio[i] = false;
-      }
-    }
+    console.log('showRadio---------------', e.currentTarget);
+    // if (this.data.isRadio.length === 0) {
+    //   for (var i = 0; i < this.data.homeMovies.length; i++) {
+    //     this.data.isRadio[i] = false;
+    //   }
+    // }
     this.data.isRadio[index] = !this.data.isRadio[index];
     this.setData(this.data);
   },
-  radioChange(e) {
-    const index = this.data.chooseIndex;
-    const radio = this.data.radioItems; //该radio本身
-    const obj = this.data.homeMovies[index]; //该类电影本身
-    const tag = this.data.homeMovies[index].tag; //选择电影的类别
-    console.log(tag);
-    var sort = e.detail.value; //选择电影的排序
-    for (var j = 0; j < radio.length; j++) {
-      radio[j].check = null;
-    }
-    for (var j = 0; j < radio.length; j++) {
-      console.log(radio[j].value);
-      radio[j].check = radio[j].value === sort ? true : null;
-    }
-    this.setData(this.data);
-    wx.request({
-      url: wx.db.movieUrl(),
-      data: { tag, sort },
-      header: { 'content-type': 'json' },
-      success: (res) => {
-        obj.movies = [];
-        obj.movies = res.data.subjects;
-        for (let i in obj.movies) {
-          updataMoive(obj.movies[i]);
-        }
-        this.setData(this.data);
-        console.log(obj.movies);
-      }
-    });
+  async radioChange(e) {
+    const index = e.currentTarget.dataset.index;
+    const updateItem = `homeMovies[${index}].movies`;
+    const { tag } = this.data.homeMovies[index];
+    const sort = e.detail.value; //选择电影的排序 热门 recommend/最新 time/评价 rank
+    console.log('radioChange-------------------------------------', tag, sort);
+    // -----------重构---------------------------
+    this.data.radioItems.forEach((item) => (item.check = item.value === sort ? true : null));
+    const res = await getMovieData({ tag, sort, page_limit: 35 });
+    let homeMovies = res.subjects;
+    homeMovies.forEach((item) => updataItemStars(item));
+    this.setData({ [updateItem]: homeMovies ?? [] });
   }
 });

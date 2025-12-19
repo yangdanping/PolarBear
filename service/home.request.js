@@ -21,7 +21,6 @@ export function getUserLocation() {
           latitude: res.latitude,
           longitude: res.longitude,
           myAddress,
-          isAdress: true
         };
 
         resolve(resolveData);

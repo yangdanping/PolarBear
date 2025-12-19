@@ -1,6 +1,7 @@
 {
   "pages": ["pages/home/home", "pages/login/login", "pages/list/list", "pages/detail/detail", "pages/tv/tv", "pages/profile/profile", "pages/map/map"],
   "tabBar": {
+    "custom": false,
     "color": "#f3f3f3",
     "selectedColor": "#ffac2d",
     "backgroundColor": "#444",

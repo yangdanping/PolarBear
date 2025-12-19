@@ -1,10 +1,10 @@
 const BASE_URL = 'https://movie.douban.com/j';
 const LOCATION_URL = 'https://api.map.baidu.com';
-const LOGIN_BASE_URL = 'http://123.207.32.32:3000';
+// const LOGIN_BASE_URL = 'http://123.207.32.32:3000';
+const LOGIN_BASE_URL = 'http://localhost:3000';
 import { TOKEN_KEY } from '../constants/token-const';
 
 const token = wx.getStorageSync(TOKEN_KEY);
-
 
 class MyRequest {
   constructor(baseURL, authHeader = {}) {
@@ -47,4 +47,4 @@ const loginRequest = new MyRequest(LOGIN_BASE_URL, { token });
 
 export default doubanRequest;
 
-export { locationRequest ,loginRequest};
+export { locationRequest, loginRequest };
